@@ -170,7 +170,9 @@ class CollectionFactory extends BaseTask implements BuilderAwareInterface, Simul
                     $taskExec->args($task['arguments']);
                 }
                 if (!empty($task['options'])) {
-                    $taskExec->options($task['options'], '=');
+                    foreach ($task['options'] as $option => $value) {
+                        $taskExec->optionList($option, $value, '=');
+                    }
                 }
                 return $taskExec;
 
@@ -209,7 +211,9 @@ class CollectionFactory extends BaseTask implements BuilderAwareInterface, Simul
                     $taskExec->args($task['arguments']);
                 }
                 if (!empty($task['options'])) {
-                    $taskExec->options($task['options']);
+                    foreach ($task['options'] as $option => $value) {
+                        $taskExec->optionList($option, $value, '=');
+                    }
                 }
                 if (!empty($task['dir'])) {
                     $taskExec->dir($task['dir']);
